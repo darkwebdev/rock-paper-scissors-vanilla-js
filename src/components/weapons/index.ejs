@@ -1,0 +1,37 @@
+<%
+  const outcomeMessages = {
+    win: 'You win!',
+    lose: 'You lose!',
+    tie: 'Stalemate!'
+  }
+
+  const headings = {
+    'choose-weapon': 'Choose your weapon',
+    'round-end': outcomeMessages[state.outcome]
+  }
+%>
+
+<h2><%= headings[state.step] %></h2>
+
+<button id="next-round" <%= state.step !== 'round-end' ? 'hidden' : '' %>>Again!</button>
+
+<ul>
+  <% Object.keys(weapons).forEach(key => { %>
+    <li class="<%= weapons[key] === state.weapon1 ? 'active' : '' %>">
+      <button
+              id="weapon-<%= key %>"
+              <%= state.step === 'round-end' ? 'disabled' : '' %>
+      ><%= key %></button>
+    </li>
+  <% }) %>
+</ul>
+
+<h3>Computer</h3>
+
+<ul>
+  <% Object.keys(weapons).forEach(key => { %>
+    <li class="<%= weapons[key] === state.weapon2 ? 'active' : '' %>">
+      <%= key %>
+    </li>
+  <% }) %>
+</ul>

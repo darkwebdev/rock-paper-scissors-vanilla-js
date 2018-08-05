@@ -1,0 +1,27 @@
+{
+  "name": "game-rps",
+  "version": "1.0.0",
+  "main": "index.html",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf build",
+    "build": "yarn clean && yarn build:js",
+    "build:js": "yarn browserify -t ejsify src/*.js -o build/bundle.js",
+    "build:styles": "cat < `find src -name '*.css'` > build/styles.css",
+    "dev": "yarn watchify -t ejsify src -o build/bundle.js",
+    "lint:ejs": "yarn ejslint src/components/**/*.ejs",
+    "lint": "yarn lint:ejs",
+    "test": "yarn mocha"
+  },
+  "dependencies": {
+    "browserify": "^16.2.2",
+    "ejs": "^2.6.1",
+    "ejsify": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "ejs-lint": "^0.3.0",
+    "mocha": "^5.2.0",
+    "watchify": "^3.11.0"
+  }
+}
