@@ -1,0 +1,8 @@
+{
+  "extends": [ "eslint:recommended", "airbnb/base" ],
+  "rules": {
+    "comma-dangle": "off",
+    "arrow-parens": "off",
+    "no-use-before-define": ["error", { "functions": false, "classes": true }]
+  }
+}

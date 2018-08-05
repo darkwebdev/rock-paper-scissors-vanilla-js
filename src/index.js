@@ -12,5 +12,3 @@ const initialState = {
 };
 
 emit(events.UPDATE_STATE, initialState);
-
-console.log("Game started, version", game.version);

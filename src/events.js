@@ -6,7 +6,6 @@ module.exports = {
   },
 
   emit(event, data) {
-    console.log('Emitting', event, data);
     (subscribers[event] || []).forEach(cb => cb(data));
   }
 };

@@ -4,7 +4,7 @@ Simple implementation of rock-paper-scissors using JS + EJS + browserify
 ## install
 ```yarn```
 
-## test
+## lint && test
 ```yarn test```
 
 ## build
