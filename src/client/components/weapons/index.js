@@ -1,6 +1,6 @@
 const views = require('../../views');
-const { emit } = require('../../events');
-const { weapons, events } = require('../../const');
+const { emit, on, ...events } = require('../../../common/events');
+const { weapons } = require('../../../common/const');
 const template = require('./index.ejs');
 
 const weaponHandlers = Object.keys(weapons).map(name => ({

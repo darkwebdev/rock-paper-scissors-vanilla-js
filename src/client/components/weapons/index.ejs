@@ -7,7 +7,8 @@
 
   const headings = {
     'choose-weapon': 'Choose your weapon',
-    'round-end': outcomeMessages[state.outcome]
+    'round-end': outcomeMessages[state.outcome],
+    'wait-enemy': 'Waiting for enemy...'
   }
 %>
 
@@ -17,20 +18,20 @@
 
 <ul>
   <% Object.keys(weapons).forEach(key => { %>
-    <li class="<%= weapons[key] === state.weapon1 ? 'active' : '' %>">
+    <li class="<%= weapons[key] === state.myWeapon ? 'active' : '' %>">
       <button
               id="weapon-<%= key %>"
-              <%= state.step === 'round-end' ? 'disabled' : '' %>
+              <%= state.step !== 'choose-weapon' ? 'disabled' : '' %>
       ><%= key %></button>
     </li>
   <% }) %>
 </ul>
 
-<h3>Computer</h3>
+<h3>Enemy</h3>
 
 <ul>
   <% Object.keys(weapons).forEach(key => { %>
-    <li class="<%= weapons[key] === state.weapon2 ? 'active' : '' %>">
+    <li class="<%= weapons[key] === state.enemyWeapon ? 'active' : '' %>">
       <%= key %>
     </li>
   <% }) %>

@@ -1,0 +1,17 @@
+<h1>Rock vs Paper vs Scissors</h1>
+
+Game version: <%= game.version %>
+
+<span class="connection<%= state.session ? ' established' : '' %>">
+  <% if (state.session) { %>
+    Connected to server
+  <% } else { %>
+    trying to connect to server...
+  <% } %>
+</span>
+
+<h3>You: <%= state.score[0] %> vs Enemy: <%= state.score[1] %></h3>
+
+<div id="weapons"></div>
+
+<button id="reset-game">Restart game</button>

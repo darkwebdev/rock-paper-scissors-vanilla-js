@@ -1,8 +1,8 @@
-const { emit } = require('../../events');
+const { emit } = require('../../../common/events');
 const views = require('../../views');
 const Weapons = require('../weapons');
 const template = require('./index.ejs');
-const { events } = require('../../const');
+const { events } = require('../../../common/const');
 
 module.exports = (context) => {
   views.render({

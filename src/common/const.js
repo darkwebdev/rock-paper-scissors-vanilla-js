@@ -24,15 +24,18 @@ const outcomes = {
 
 const steps = {
   CHOOSE_WEAPON: 'choose-weapon',
-  ROUND_END: 'round-end'
+  ROUND_END: 'round-end',
+  WAIT_ENEMY: 'wait-enemy',
+  WAIT_READY: 'wait-ready'
 };
 
-const events = {
-  WEAPON_SELECTED: 'weapon-selected',
-  NEXT_ROUND: 'next-round',
-  UPDATE_STATE: 'update-state',
-  STATE_CHANGED: 'state-changed',
-  RESET_GAME: 'reset-game'
+const modes = {
+  SINGLEPLAYER: 'singleplayer',
+  MULTIPLAYER: 'multiplayer'
+};
+
+const config = {
+  MAX_CLIENTS: 2
 };
 
 module.exports = {
@@ -40,5 +43,6 @@ module.exports = {
   weaponRules,
   outcomes,
   steps,
-  events
+  modes,
+  config
 };

@@ -6,10 +6,10 @@
   "scripts": {
     "clean": "rm -rf build",
     "build": "yarn clean && yarn build:js",
-    "build:js": "yarn browserify -t ejsify src/*.js -o build/bundle.js",
-    "build:styles": "cat < `find src -name '*.css'` > build/styles.css",
-    "dev": "yarn watchify -t ejsify src -o build/bundle.js",
-    "lint:ejs": "yarn ejslint src/components/**/*.ejs",
+    "build:js": "yarn browserify -t ejsify src/client/*.js src/common/*.js -o build/bundle.js",
+    "build:styles": "find src/client -name '*.css' -exec cat {} + > build/styles.css",
+    "dev": "yarn watchify -t ejsify src/client -o build/bundle.js -v",
+    "lint:ejs": "yarn ejslint src/client/**/*.ejs",
     "lint:js": "yarn eslint src",
     "lint": "yarn lint:js && yarn lint:ejs",
     "test": "yarn mocha"
@@ -17,7 +17,8 @@
   "dependencies": {
     "browserify": "^16.2.2",
     "ejs": "^2.6.1",
-    "ejsify": "^1.0.0"
+    "ejsify": "^1.0.0",
+    "websocket": "^1.0.26"
   },
   "devDependencies": {
     "chai": "^4.1.2",

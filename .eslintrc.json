@@ -1,8 +1,16 @@
 {
   "extends": [ "eslint:recommended", "airbnb/base" ],
+  "env": {
+    "mocha": true
+  },
   "rules": {
     "comma-dangle": "off",
     "arrow-parens": "off",
-    "no-use-before-define": ["error", { "functions": false, "classes": true }]
+    "no-use-before-define": [ "error", { "functions": false, "classes": true } ],
+    "no-trailing-spaces": [ "error", { "skipBlankLines": true, "ignoreComments": true } ],
+    "object-curly-newline": [ "error", { "ImportDeclaration": "never" }],
+    "padded-blocks": "off",
+    "max-len": [ "warn", 120 ],
+    "array-bracket-spacing": "off"
   }
 }
