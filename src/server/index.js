@@ -36,7 +36,7 @@ wsServer.on('request', request => {
   connection.on('close', () => {
     destroySession(session.id);
     console.log('Connnection closed, session killed.');
-    events.emit(events.CONNECTION_LOST);
+    events.emit(events.CONNECTION_OFF);
   });
 
   events.on(events.CLIENT_SEND_MSG, ({ client, state = {}, event = undefined }) => {

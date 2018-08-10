@@ -14,8 +14,8 @@ const events = {
   ADD_CLIENT: 'add-client',
   WAIT_ENEMY: 'wait-enemy',
   READY: 'ready',
-  CONNECTION_ESTABLISHED: 'connection-established',
-  CONNECTION_LOST: 'connection-lost'
+  CONNECTION_ON: 'connection-on',
+  CONNECTION_OFF: 'connection-off'
 };
 
 module.exports = {

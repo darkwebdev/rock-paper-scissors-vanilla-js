@@ -38,11 +38,17 @@ const config = {
   MAX_CLIENTS: 2
 };
 
+const connection = {
+  ONLINE: 'online',
+  OFFLINE: 'offline'
+};
+
 module.exports = {
   weapons,
   weaponRules,
   outcomes,
   steps,
   modes,
-  config
+  config,
+  connection
 };

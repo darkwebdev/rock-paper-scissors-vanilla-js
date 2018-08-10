@@ -15,7 +15,14 @@ module.exports = (game, clients) => {
     if (!clients.includes(clientId)) return;
 
     console.log('CLIENT_MSG_RECEIVED', clientEvent, eventData);
-    const { serverState, clientMessages = [] } = reducers[clientEvent]({ state, eventData, game, clients, clientId });
+    const reducer = reducers[clientEvent];
+
+    if (!reducer) {
+      console.log('Error: unknown client event', clientEvent);
+      return;
+    }
+
+    const { serverState, clientMessages = [] } = reducer({ state, eventData, game, clients, clientId });
 
     emit(events.UPDATE_STATE, serverState);
 
@@ -34,7 +41,7 @@ module.exports = (game, clients) => {
     console.log('State update', newState);
   });
 
-  const onDisconnect = on(events.CONNECTION_LOST, () => {
+  const onDisconnect = on(events.CONNECTION_OFF, () => {
     emit(events.UPDATE_STATE, initialState);
   });
 
@@ -43,7 +50,7 @@ module.exports = (game, clients) => {
       off(events.CLIENT_MSG_RECEIVED, onClientMsgReceived);
       off(events.UPDATE_STATE, onUpdateState);
       off(events.STATE_CHANGED, onStateChanged);
-      off(events.CONNECTION_LOST, onDisconnect);
+      off(events.CONNECTION_OFF, onDisconnect);
     }
   };
 };

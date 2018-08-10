@@ -1,3 +1,6 @@
-.connection.established {
+.online {
     color: #19cf92;
+}
+.offline {
+    color: #666;
 }

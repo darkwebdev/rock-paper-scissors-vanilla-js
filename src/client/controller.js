@@ -1,5 +1,5 @@
 const { on, emit, ...events } = require('../common/events');
-const { weapons, steps, modes } = require('../common/const');
+const { weapons, steps, modes, connection } = require('../common/const');
 const Main = require('./components/main');
 
 let state = {};
@@ -11,6 +11,23 @@ module.exports = (game) => {
     if (newState) {
       emit(events.UPDATE_STATE, newState);
     }
+  });
+
+  on(events.CONNECTION_ON, () => {
+    const newState = {
+      connection: connection.ONLINE
+    };
+
+    emit(events.UPDATE_STATE, newState);
+    emit(events.RESET_GAME);
+  });
+
+  on(events.CONNECTION_OFF, () => {
+    const newState = {
+      connection: connection.OFFLINE
+    };
+
+    emit(events.UPDATE_STATE, newState);
   });
 
   on(events.WEAPON_SELECTED, myWeapon => {
@@ -27,13 +44,13 @@ module.exports = (game) => {
       };
       emit(events.UPDATE_STATE, newState);
     } else {
-      const client1weapon = game.randomWeapon(weapons);
-      const outcome = game.roundOutcome(myWeapon, client1weapon);
+      const enemyWeapon = game.randomWeapon(weapons);
+      const outcome = game.roundOutcome(myWeapon, enemyWeapon);
 
       const newState = {
         step: steps.ROUND_END,
         myWeapon,
-        client1weapon,
+        enemyWeapon,
         outcome,
         score: game.updatedScore(state.score, outcome)
       };
@@ -51,23 +68,31 @@ module.exports = (game) => {
   on(events.NEXT_ROUND, () => {
     const newState = {
       step: steps.WAIT_ENEMY,
-      client0weapon: undefined,
-      client1weapon: undefined,
+      myWeapon: undefined,
+      enemyWeapon: undefined,
       outcome: undefined
     };
 
-    emit(events.SERVER_SEND_MSG, events.READY);
+    emit(events.SERVER_SEND_MSG, { event: events.READY });
     emit(events.UPDATE_STATE, newState);
   });
 
   on(events.RESET_GAME, () => {
     if (state.mode === modes.MULTIPLAYER) {
-      console.log('reset game not implemented');
+      const newState = {
+        step: steps.WAIT_ENEMY,
+        myWeapon: undefined,
+        enemyWeapon: undefined,
+        outcome: undefined,
+        score: [0, 0]
+      };
+
+      emit(events.UPDATE_STATE, newState);
     } else {
       const newState = {
         step: steps.CHOOSE_WEAPON,
-        client0weapon: undefined,
-        client1weapon: undefined,
+        myWeapon: undefined,
+        enemyWeapon: undefined,
         outcome: undefined,
         score: [0, 0]
       };

@@ -2,12 +2,17 @@
 
 Game version: <%= game.version %>
 
-<span class="connection<%= state.session ? ' established' : '' %>">
-  <% if (state.session) { %>
-    Connected to server
-  <% } else { %>
-    trying to connect to server...
-  <% } %>
+<span class="<%= state.connection %>">
+  <% switch (state.connection) {
+    case 'online':%>
+      Connected to server
+      <% break;
+
+    case 'offline':
+    default:%>
+      Not connected
+      <% break;
+  } %>
 </span>
 
 <h3>You: <%= state.score[0] %> vs Enemy: <%= state.score[1] %></h3>

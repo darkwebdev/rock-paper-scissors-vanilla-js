@@ -11,25 +11,27 @@ module.exports = {
       [`client${clientIndex}ready`]: true
     };
 
-    const anotherClientIndex = 1 - clientIndex;
+    const enemyIndex = 1 - clientIndex;
 
     const clientState = {
-      step: steps.CHOOSE_WEAPON
+      step: steps.CHOOSE_WEAPON,
+      myWeapon: undefined,
+      enemyWeapon: undefined
     };
 
-    const client0msg = {
-      client: clients[0],
+    const clientMsg = {
+      client: clients[clientIndex],
       state: clientState
     };
 
-    const client1msg = {
-      client: clients[1],
+    const enemyMsg = {
+      client: clients[enemyIndex],
       state: clientState
     };
 
     return {
       serverState,
-      clientMessages: state[`client${anotherClientIndex}ready`] ? [ client0msg, client1msg ] : []
+      clientMessages: state[`client${enemyIndex}ready`] ? [ clientMsg, enemyMsg ] : []
     };
   },
 
@@ -59,7 +61,9 @@ module.exports = {
       step: steps.ROUND_END,
       score,
       client0weapon: undefined,
-      client1weapon: undefined
+      client1weapon: undefined,
+      client0ready: undefined,
+      client1ready: undefined
     };
 
     const clientState = {
