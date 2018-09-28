@@ -1,7 +1,7 @@
-const Game = require('./game');
-const Controller = require('./controller');
-const { emit } = require('./events');
-const { weaponRules, steps, events } = require('./const');
+import Game from './game.js';
+import Controller from './controller.js';
+import { emit } from './events.js';
+import { weaponRules, steps, events } from './const.js';
 
 const game = Game(weaponRules);
 Controller(game);
@@ -12,3 +12,7 @@ const initialState = {
 };
 
 emit(events.UPDATE_STATE, initialState);
+
+if (window) {
+  window.emit = emit;
+}

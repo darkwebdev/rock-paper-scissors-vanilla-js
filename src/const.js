@@ -35,7 +35,7 @@ const events = {
   RESET_GAME: 'reset-game'
 };
 
-module.exports = {
+export {
   weapons,
   weaponRules,
   outcomes,

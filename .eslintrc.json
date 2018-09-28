@@ -1,8 +1,16 @@
 {
   "extends": [ "eslint:recommended", "airbnb/base" ],
+  "env": {
+    "browser": true,
+    "mocha": true
+  },
   "rules": {
-    "comma-dangle": "off",
-    "arrow-parens": "off",
-    "no-use-before-define": ["error", { "functions": false, "classes": true }]
+    "comma-dangle": 0,
+    "arrow-parens": 0,
+    "no-use-before-define": ["error", { "functions": false, "classes": true }],
+    "import/extensions": 0,
+    "import/newline-after-import": 0,
+    "import/first": 0,
+    "import/order": 0
   }
 }

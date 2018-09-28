@@ -1,13 +1,12 @@
-const { randomWeapon } = require('./game');
-const { emit, on } = require('./events');
-const { weapons, events, steps } = require('./const');
-const Main = require('./components/main');
+import { emit, on } from './events.js';
+import { weapons, events, steps } from './const.js';
+import Main from './components/main/index.js';
 
 let state = {};
 
-module.exports = (game) => {
+export default function (game) {
   on(events.WEAPON_SELECTED, weapon1 => {
-    const weapon2 = randomWeapon();
+    const weapon2 = game.randomWeapon();
     const outcome = game.roundResult(weapon1, weapon2);
 
     const newState = {
@@ -51,11 +50,10 @@ module.exports = (game) => {
   });
 
   on(events.STATE_CHANGED, newState => {
-    Main({
+    document.querySelector('#app').innerHTML = Main({
       state: newState,
       game,
-      weapons,
-      root: '#app'
+      weapons
     });
   });
-};
+}

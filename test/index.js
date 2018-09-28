@@ -1,6 +1,6 @@
-const expect = require('chai').expect;
-const Game = require('../src/game');
-const { weapons, weaponRules, outcomes } = require('../src/const');
+const { expect } = require('chai');
+import Game from '../src/game';
+import { weapons, weaponRules, outcomes } from '../src/const';
 
 const game = Game(weaponRules);
 

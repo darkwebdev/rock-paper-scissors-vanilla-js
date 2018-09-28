@@ -1,27 +1,46 @@
-const views = require('../../views');
-const { emit } = require('../../events');
-const { weapons, events } = require('../../const');
-const template = require('./index.ejs');
+import { events } from '../../const.js';
 
-const weaponHandlers = Object.keys(weapons).map(name => ({
-  selector: `#weapon-${name}`,
-  handler() {
-    emit(events.WEAPON_SELECTED, weapons[name]);
-  }
-}));
+export default function ({ state, weapons }) {
+  const outcomeMessages = {
+    win: 'You win!',
+    lose: 'You lose!',
+    tie: 'Stalemate!'
+  };
 
-const endRoundHandler = {
-  selector: '#next-round',
-  handler() {
-    emit(events.NEXT_ROUND);
-  }
-};
+  const headings = {
+    'choose-weapon': 'Choose your weapon',
+    'round-end': outcomeMessages[state.outcome]
+  };
 
-module.exports = (context) => {
-  views.render({
-    ...context,
-    template
-  });
+  const weaponItem = (name, weapon, clickable) => {
+    const clickHanlder = `onclick="emit('${events.WEAPON_SELECTED}', '${weapons[name]}')"`;
 
-  views.attachHandlers(weaponHandlers.concat([endRoundHandler]));
-};
+    return `
+      <li class="${weapons[name] === state[weapon] ? 'active' : ''}">
+        <button
+          id="weapon-${name}"
+          ${state.step === 'round-end' ? 'disabled' : ''}
+          ${clickable ? clickHanlder : ''}>${name}</button>
+      </li>
+    `;
+  };
+
+  return `
+    <h2>${headings[state.step]}</h2>
+  
+    <button
+      id="next-round"
+      ${state.step !== 'round-end' ? 'hidden' : ''}
+      onclick="emit('${events.NEXT_ROUND}')">Again!</button>
+  
+    <ul>
+      ${Object.keys(weapons).map(name => weaponItem(name, 'weapon1', true)).join('')}
+    </ul>
+  
+    <h3>Computer</h3>
+  
+    <ul>
+      ${Object.keys(weapons).map(name => weaponItem(name, 'weapon2', false)).join('')}
+    </ul>
+  `;
+}

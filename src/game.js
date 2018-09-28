@@ -1,6 +1,6 @@
-const { weapons, outcomes } = require('./const');
+import { weapons, outcomes } from './const.js';
 
-const Game = (rules) => ({
+export default rules => ({
   version: '0.1',
 
   roundResult(weapon1, optionalWeapon) {
@@ -19,7 +19,9 @@ const Game = (rules) => ({
     };
 
     return newScores[outcome];
-  }
+  },
+
+  randomWeapon
 });
 
 function randomWeapon() {
@@ -28,6 +30,3 @@ function randomWeapon() {
 
   return weapons[randomKey];
 }
-
-module.exports = Game;
-module.exports.randomWeapon = randomWeapon;
