@@ -1,0 +1,38 @@
+#main {
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    text-align: center;
+}
+
+.control-panel {
+}
+
+.control-panel button {
+    padding: 1em 2em;
+}
+
+.players {
+    display: flex;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.avatar {
+    margin-bottom: 2em;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+h2 {
+    margin: 0;
+}

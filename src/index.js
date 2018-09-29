@@ -2,7 +2,7 @@ import Controller from './controller.js';
 import { emit } from './events.js';
 import { events } from './const.js';
 
-Controller();
+Controller('#main');
 
 emit(events.RESET_GAME);
 

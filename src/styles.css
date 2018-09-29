@@ -1,1 +1,16 @@
+@import 'components/main/styles.css';
 @import 'components/weapon/styles.css';
+
+header {
+    padding: 1em;
+}
+
+h1 {
+    margin: 0;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    line-height: 0;
+}

@@ -5,7 +5,7 @@ import Main from './components/main/index.js';
 
 let state = {};
 
-export default function () {
+export default function (main) {
   on(events.WEAPON_SELECTED, weapon1 => {
     const weapon2 = randomWeapon();
     const outcome = roundResult(weapon1, weapon2);
@@ -43,6 +43,6 @@ export default function () {
   });
 
   on(events.STATE_CHANGED, newState => {
-    document.querySelector('#app').innerHTML = Main({ state: newState });
+    document.querySelector(main).innerHTML = Main({ state: newState });
   });
 }

@@ -3,12 +3,21 @@
 }
 
 .weapons .weapon {
+    box-sizing: border-box;
     display: inline-block;
     height: 135px;
     width: 135px;
     border: 4px solid transparent;
     border-radius: 50%;
     background: none center center no-repeat;
+}
+
+button.weapon {
+    cursor: pointer;
+}
+
+.choose-weapon button.weapon:hover {
+    border-color: #ddd;
 }
 
 .player1 .weapon-rock {
