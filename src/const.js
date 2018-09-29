@@ -16,6 +16,11 @@ const weaponRules = {
   }
 };
 
+const weaponIds = {
+  WEAPON1: 'weapon1',
+  WEAPON2: 'weapon2'
+};
+
 const outcomes = {
   WIN: 'win',
   LOSE: 'lose',
@@ -35,10 +40,20 @@ const events = {
   RESET_GAME: 'reset-game'
 };
 
+const initialState = {
+  step: steps.CHOOSE_WEAPON,
+  score: [0, 0],
+  weapon1: undefined,
+  weapon2: undefined,
+  outcome: undefined,
+};
+
 export {
   weapons,
   weaponRules,
+  weaponIds,
   outcomes,
   steps,
-  events
+  events,
+  initialState
 };

@@ -1,20 +1,21 @@
 import { emit, on } from './events.js';
-import { weapons, events, steps } from './const.js';
+import { events, steps, initialState } from './const.js';
+import { randomWeapon, roundResult, updatedScore } from './game.js';
 import Main from './components/main/index.js';
 
 let state = {};
 
-export default function (game) {
+export default function () {
   on(events.WEAPON_SELECTED, weapon1 => {
-    const weapon2 = game.randomWeapon();
-    const outcome = game.roundResult(weapon1, weapon2);
+    const weapon2 = randomWeapon();
+    const outcome = roundResult(weapon1, weapon2);
 
     const newState = {
       step: steps.ROUND_END,
       weapon1,
       weapon2,
       outcome,
-      score: game.updatedScore(state.score, outcome)
+      score: updatedScore(state.score, outcome)
     };
 
     emit(events.UPDATE_STATE, newState);
@@ -38,22 +39,10 @@ export default function (game) {
   });
 
   on(events.RESET_GAME, () => {
-    const newState = {
-      step: steps.CHOOSE_WEAPON,
-      weapon1: undefined,
-      weapon2: undefined,
-      outcome: undefined,
-      score: [0, 0]
-    };
-
-    emit(events.UPDATE_STATE, newState);
+    emit(events.UPDATE_STATE, initialState);
   });
 
   on(events.STATE_CHANGED, newState => {
-    document.querySelector('#app').innerHTML = Main({
-      state: newState,
-      game,
-      weapons
-    });
+    document.querySelector('#app').innerHTML = Main({ state: newState });
   });
 }

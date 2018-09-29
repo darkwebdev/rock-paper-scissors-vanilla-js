@@ -1,7 +1,0 @@
-#weapons li {
-    display: inline-block;
-}
-
-#weapons li.active {
-    border: 1px solid;
-}

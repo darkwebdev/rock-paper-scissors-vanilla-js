@@ -1,0 +1,46 @@
+.weapons li {
+    display: inline-block;
+}
+
+.weapons .weapon {
+    display: inline-block;
+    height: 135px;
+    width: 135px;
+    border: 4px solid transparent;
+    border-radius: 50%;
+    background: none center center no-repeat;
+}
+
+.player1 .weapon-rock {
+    background-image: url('../../images/Player1Rock.png');
+}
+
+.player1 .weapon-paper {
+    background-image: url('../../images/Player1Paper.png');
+}
+
+.player1 .weapon-scissors {
+    background-image: url('../../images/Player1Scissors.png');
+}
+
+.player2 .weapon-rock {
+    background-image: url('../../images/Player2Rock.png');
+}
+
+.player2 .weapon-paper {
+    background-image: url('../../images/Player2Paper.png');
+}
+
+.player2 .weapon-scissors {
+    background-image: url('../../images/Player2Scissors.png');
+}
+
+.weapons .win {
+    border-color: green;
+}
+.weapons .lose {
+    border-color: red;
+}
+.weapons .tie {
+    border-color: grey;
+}
