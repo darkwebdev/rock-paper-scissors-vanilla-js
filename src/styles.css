@@ -1,6 +1,11 @@
 @import 'components/main/styles.css';
 @import 'components/weapon/styles.css';
 
+body {
+    overflow: hidden;
+    margin: 0;
+}
+
 header {
     padding: 1em;
 }

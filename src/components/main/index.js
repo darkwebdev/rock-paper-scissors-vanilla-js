@@ -1,4 +1,4 @@
-import { events, weaponIds } from '../../const.js';
+import { events, weaponIds, steps } from '../../const.js';
 import Weapon from '../weapon/index.js';
 
 export default function ({ state }) {
@@ -24,10 +24,15 @@ export default function ({ state }) {
       
       <button
         class="next-round"
-        ${state.step !== 'round-end' ? 'hidden' : ''}
-        onclick="emit('${events.NEXT_ROUND}')">Again!</button>
+        ${state.step !== steps.ROUND_END ? 'hidden' : ''}
+        onclick="emit('${events.NEXT_ROUND}')"
+      >Again!</button>
         
-      <button class="reset-game" onclick="emit('${events.RESET_GAME}')">Restart game</button>
+      <button
+        class="reset-game"
+        ${state.score[0] === 0 && state.score[1] === 0 ? 'hidden' : ''}
+        onclick="emit('${events.RESET_GAME}')"
+      >Restart game</button>
     </div>
     
     <div class="players ${state.step}">
